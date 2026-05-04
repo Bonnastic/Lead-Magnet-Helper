@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead Magnet Helper — GHL Landing Page Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Simplified GHL-Style Navigation Sidebar -->
+    <aside class="nav-sidebar">
+      <div class="nav-logo text-logo">
+        GHL HELPER
+      </div>
+
+      <nav class="nav-menu scroll-area">
+        <div class="nav-item active" id="nav-html-editor">
+          <span class="icon">💻</span>
+          HTML Editor
+        </div>
+        <div class="nav-item" id="nav-ghl-formatter">
+          <span class="icon">✨</span>
+          GHL Formatter
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Collapsible Code Editor Panel -->
+    <aside id="code-panel" class="code-panel">
+      <header class="panel-header">
+        <h3 id="panel-title">Source HTML Editor</h3>
+        <button id="close-code-panel" class="btn-icon">×</button>
+      </header>
+      <div class="panel-content">
+        <div id="editor-html" class="editor-pane active">
+          <textarea id="input-master-template" class="scroll-area"
+            placeholder="Paste your GHL HTML code here..."></textarea>
+        </div>
+        <div id="editor-formatter" class="editor-pane">
+          <div class="formatter-container scroll-area">
+            <div class="formatter-grid">
+              <!-- 1. LIVE PREVIEW (Now at Top for Full Visibility) -->
+              <div class="field-group" style="grid-column: span 2;">
+                <div class="label-row">
+                  <label>Hello Bar Live Preview</label>
+                </div>
+                <div class="hb-preview-screen">
+                  <iframe id="hb-preview-iframe" title="Hello Bar Preview"></iframe>
+                  <div class="hb-preview-placeholder">Awaiting Hello Bar content...</div>
+                </div>
+              </div>
+
+
+
+              <!-- 2. DYNAMIC HELLO BAR WORKSPACE (Side-by-Side) -->
+              <div class="hb-workspace">
+                <div class="field-group" style="margin-bottom: 0;">
+                  <div class="label-row">
+                    <label>DYNAMIC HELLO BAR <span>(Auto-Mapped)</span></label>
+                    <button id="btn-upload-hb-html" class="btn-text-icon"><span class="icon">📁</span> UPLOAD HTML</button>
+                    <input type="file" id="input-file-hb-html" accept=".html,.txt" style="display: none;">
+                  </div>
+                  <div class="hb-inputs-grid">
+                    <input type="text" id="hb-l1" placeholder="Line 1: Limited Time Offer">
+                    <input type="text" id="hb-l2" placeholder="Line 2: Get the AI Twins System for only">
+                    <div class="hb-row">
+                      <input type="text" id="hb-p" placeholder="Price: $97">
+                      <input type="text" id="hb-c" placeholder="CTA: Claim Discount">
+                    </div>
+                    <input type="text" id="hb-u" placeholder="CTA Link: https://...">
+                  </div>
+                </div>
+
+                  <!-- 3. SALES PAGE URL (Now on the Right) -->
+                <div class="field-group" style="margin-bottom: 0;">
+                  <div class="label-row">
+                    <label>SALES PAGE URL <span>(Target)</span></label>
+                  </div>
+                  <textarea id="formatter-sales-url" class="scroll-area" placeholder="https://bonniefahy.com/twin" style="min-height: 120px; margin-bottom: 15px;">https://bonniefahy.com/twin</textarea>
+                  
+                  <!-- INJECTION TOGGLES (Side-by-Side Under URL) -->
+                  <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5; cursor: not-allowed;">
+                      <label class="switch" style="pointer-events: none;">
+                        <input type="checkbox" id="toggle-inject-hb" disabled>
+                        <span class="slider round"></span>
+                      </label>
+                      <span style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Hello Bar</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; opacity: 0.5; cursor: not-allowed;">
+                      <label class="switch" style="pointer-events: none;">
+                        <input type="checkbox" id="toggle-inject-form" disabled>
+                        <span class="slider round"></span>
+                      </label>
+                      <span style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Form Script</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group" style="margin-top: 24px;">
+              <div class="label-row">
+                <label>PAGE HTML SOURCE</label>
+                <div class="label-actions">
+
+                  <button id="btn-upload-lm-html" class="btn-text-icon"><span class="icon">📄</span> UPLOAD
+                    FILE</button>
+                  <input type="file" id="input-file-lm-html" accept=".html,.txt" style="display: none;">
+                </div>
+              </div>
+              <textarea id="formatter-html-input" class="scroll-area"
+                placeholder="Paste your Lead Magnet or Sales Page HTML here..." style="min-height: 200px;"></textarea>
+            </div>
+
+            <div class="formatter-actions">
+              <button id="btn-fix-html" class="btn-fix">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                Inject Logic & Fix HTML
+              </button>
+            </div>
+
+            <!-- Initial State Placeholder -->
+            <div id="formatter-awaiting" class="formatter-placeholder">
+              <div class="placeholder-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </div>
+              <span class="placeholder-text">AWAITING INPUT</span>
+            </div>
+
+            <!-- Results State -->
+            <div id="formatter-results" class="formatter-results" style="display: none;">
+              <div class="result-card target-url-card">
+                <div class="result-header">
+                  <span class="icon-check">✓</span>
+                  <div class="result-title">
+                    <h4>Dynamic Target URL</h4>
+                    <p>Copy this for your buttons to carry the message.</p>
+                  </div>
+                </div>
+                <div class="copy-box">
+                  <input type="text" id="result-target-url" readonly value="">
+                  <button class="btn-copy-sm">📋</button>
+                </div>
+              </div>
+
+              <div class="status-badges">
+                <span class="badge-status">PARAMETER READY</span>
+                <span class="badge-status">PROXY SCRIPT INJECTED</span>
+              </div>
+
+              <div class="result-section">
+                <div class="label-row">
+                  <label>FIXED PAGE HTML</label>
+                  <button class="btn-text-icon" id="btn-copy-fixed-html">📋 Copy HTML</button>
+                </div>
+                <div class="code-output scroll-area">
+                  <pre id="formatter-output"><code>&lt;!DOCTYPE html&gt;...</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Preview Area -->
+    <main class="preview-pane">
+      <header class="preview-header">
+        <div class="header-left">
+          <button id="btn-source" class="btn-icon-text">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            Source
+          </button>
+        </div>
+        <div class="device-controls">
+          <button class="btn-device active" data-device="desktop">Desktop</button>
+          <button class="btn-device" data-device="mobile">Mobile</button>
+        </div>
+        <div class="header-right">
+          <button id="copy-btn" class="btn-primary">Copy GHL Code</button>
+        </div>
+      </header>
+      <div class="iframe-container">
+        <iframe id="preview-iframe"></iframe>
+      </div>
+    </main>
+
+    <!-- Right Selection Sidebar -->
+    <aside id="right-sidebar" class="right-sidebar">
+      <header class="header">
+        <h2>Image Settings</h2>
+        <button id="close-right-sidebar" class="btn-icon">×</button>
+      </header>
+      <div class="scroll-area" id="right-sidebar-content">
+        <div id="image-controls" class="edit-group" style="display: none;">
+          <div class="field-group">
+            <label>Image URL</label>
+            <textarea id="img-url" placeholder="https://..." rows="4" style="height: auto;"></textarea>
+          </div>
+        </div>
+        <div id="empty-selection" class="empty-state">
+          <p>Click an image in the preview to edit its properties.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast">Code copied to clipboard!</div>
+
+  <!-- Hidden Initial Template -->
+  <script type="text/template" id="master-template">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <style>
+    body { font-family: sans-serif; background: #1a0a2e; color: #fff; text-align: center; padding: 50px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    img { max-width: 100%; border-radius: 8px; margin: 20px 0; transition: all 0.3s; }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Your New Page</h1>
+    <p>Click any text to edit it, or click the image below to change its URL and size.</p>
+    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=2030&auto=format&fit=crop" id="hero-img">
+    <div style="margin-top: 40px;">
+        <button style="padding: 15px 30px; background: #f472b6; border: none; border-radius: 5px; color: #fff; font-weight: bold; cursor: pointer;">GET STARTED NOW</button>
+    </div>
+  </div>
+</body>
+</html>
+    </script>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
