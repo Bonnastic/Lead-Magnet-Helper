@@ -825,3 +825,4 @@ copyBtn.addEventListener('click', () => {
 
 updatePreview();
 updateTargetUrl();
+switchNavTab('ghl-formatter');
